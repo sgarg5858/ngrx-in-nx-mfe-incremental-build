@@ -80,6 +80,24 @@ module.exports = {
           requiredVersion: 'auto',
           includeSecondaries: true,
         },
+        '@ngrx/store': {
+          singleton: true,
+          strictVersion: true,
+          requiredVersion: 'auto',
+          includeSecondaries: true,
+        },
+        '@ngrx/effects': {
+          singleton: true,
+          strictVersion: true,
+          requiredVersion: 'auto',
+          includeSecondaries: true,
+        },
+        '@ngrx/router-store': {
+          singleton: true,
+          strictVersion: true,
+          requiredVersion: 'auto',
+          includeSecondaries: true,
+        },
         ...sharedMappings.getDescriptors(),
       }),
       library: {
