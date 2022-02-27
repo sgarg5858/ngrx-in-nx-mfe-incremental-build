@@ -1,0 +1,10 @@
+<ng-container>
+    <h1 *ngIf="postsFacade.loading$ | async">
+        Loading Posts
+    </h1>
+    <ul>
+        <li *ngFor="let post of (postsFacade.posts$ | async)">
+            {{ post | json }}
+        </li>
+    </ul>
+</ng-container>
