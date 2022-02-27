@@ -1,0 +1,42 @@
+{
+  "projectType": "library",
+  "root": "libs/photos/feature",
+  "sourceRoot": "libs/photos/feature/src",
+  "prefix": "ngrx-in-nx-mfe-incremental-build",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/angular:ng-packagr-lite",
+      "outputs": ["dist/libs/photos/feature"],
+      "options": {
+        "project": "libs/photos/feature/ng-package.json"
+      },
+      "configurations": {
+        "production": {
+          "tsConfig": "libs/photos/feature/tsconfig.lib.prod.json"
+        },
+        "development": {
+          "tsConfig": "libs/photos/feature/tsconfig.lib.json"
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/photos/feature"],
+      "options": {
+        "jestConfig": "libs/photos/feature/jest.config.js",
+        "passWithNoTests": true
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "libs/photos/feature/src/**/*.ts",
+          "libs/photos/feature/src/**/*.html"
+        ]
+      }
+    }
+  },
+  "tags": []
+}

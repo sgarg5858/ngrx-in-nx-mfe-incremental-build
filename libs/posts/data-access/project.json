@@ -1,0 +1,42 @@
+{
+  "projectType": "library",
+  "root": "libs/posts/data-access",
+  "sourceRoot": "libs/posts/data-access/src",
+  "prefix": "ngrx-in-nx-mfe-incremental-build",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/angular:ng-packagr-lite",
+      "outputs": ["dist/libs/posts/data-access"],
+      "options": {
+        "project": "libs/posts/data-access/ng-package.json"
+      },
+      "configurations": {
+        "production": {
+          "tsConfig": "libs/posts/data-access/tsconfig.lib.prod.json"
+        },
+        "development": {
+          "tsConfig": "libs/posts/data-access/tsconfig.lib.json"
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/posts/data-access"],
+      "options": {
+        "jestConfig": "libs/posts/data-access/jest.config.js",
+        "passWithNoTests": true
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "libs/posts/data-access/src/**/*.ts",
+          "libs/posts/data-access/src/**/*.html"
+        ]
+      }
+    }
+  },
+  "tags": []
+}
