@@ -25,6 +25,6 @@ export class UsersFacade {
   }
   loadUsers()
   {
-    this.store.dispatch(UsersActions.loadUsers())
+    this.store.dispatch(UsersActions.checkUsersInCacheElseMakeApiCall())
   }
 }
