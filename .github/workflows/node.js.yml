@@ -18,7 +18,7 @@ jobs:
         uses: actions/cache@v2
         with:
           path: node_modules
-          key: cache-node-modules-${{ hashFiles('package-lock') }}
+          key: cache-node-modules-${{ hashFiles('package-lock.json') }}
       - uses: actions/setup-node@v1
         if: steps.cache.outputs.cache-hit != 'true'
         with:
@@ -49,5 +49,5 @@ jobs:
       uses: actions/cache@v2
       with:
         path: node_modules
-        key: cache-node-modules-${{ hashFiles('package-lock') }}
+        key: cache-node-modules-${{ hashFiles('package-lock.json') }}
     - run: npm run affected:build --with-deps --parallel -- --base=remotes/origin/main
