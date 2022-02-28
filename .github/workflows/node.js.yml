@@ -8,10 +8,28 @@ on:
     branches: [ main ]
 
 jobs:
+
+  install-deps:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Cache node modules
+        id: cache
+        uses: actions/cache@v2
+        with:
+          path: node_modules
+          key: cache-node-modules-${{ hashFiles('package-lock') }}
+      - uses: actions/setup-node@v1
+        if: steps.cache.outputs.cache-hit != 'true'
+        with:
+          node-version: 16.x
+      - name: npm install
+        if: steps.cache.outputs.cache-hit != 'true'
+        run: npm install
   build:
 
     runs-on: ubuntu-latest
-
+    needs: install-deps
     strategy:
       matrix:
         node-version: [16.x]
@@ -26,6 +44,5 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
-    - run: git fetch origin main   
-    - run: npm install
+    - run: git fetch origin main
     - run: npm run affected:build --with-deps --parallel -- --base=remotes/origin/main
