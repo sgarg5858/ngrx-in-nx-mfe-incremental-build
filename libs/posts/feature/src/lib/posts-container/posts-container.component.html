@@ -1,7 +1,7 @@
 <ng-container>
     <div class="container">
         <h1 *ngIf="postsFacade.loading$ | async">
-            Loading Posts
+            Loading Posts....
         </h1>
         <ul>
             <li *ngFor="let post of (postsFacade.posts$ | async)">
