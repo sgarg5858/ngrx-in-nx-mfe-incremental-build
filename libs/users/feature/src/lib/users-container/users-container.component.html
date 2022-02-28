@@ -1,0 +1,9 @@
+<div>
+    <h1 *ngIf="(usersFacade.loading$ | async)">Loading.....</h1>
+    <h1 *ngIf="(usersFacade.error$ | async)">Something went wrong.....</h1>
+    <ul>
+        <li *ngFor="let user of (usersFacade.allUsers$ | async)">
+            {{user|json}}
+        </li>
+    </ul>
+</div>
