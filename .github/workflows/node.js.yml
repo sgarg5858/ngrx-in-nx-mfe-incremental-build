@@ -28,4 +28,4 @@ jobs:
         cache: 'npm'
     - run: git fetch origin main   
     - run: npm install
-    - run: npm run affected:build --with-deps -- --base=remotes/origin/main
+    - run: npm run affected:build --with-deps --parallel -- --base=remotes/origin/main
