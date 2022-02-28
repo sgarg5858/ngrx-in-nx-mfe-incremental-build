@@ -23,6 +23,6 @@ export class PostsFacade {
  
   loadPosts()
   {
-    this.store.dispatch(PostsActions.loadPosts())
+    this.store.dispatch(PostsActions.checkPostsInCacheFirst())
   }
 }
