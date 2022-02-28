@@ -28,15 +28,19 @@ jobs:
         cache: 'npm'
     - run: git fetch origin main
     
-    - name: Cache Node Modules
-      id: cache-node-modules
-      uses: actions/cache@v2
+    - name: Get npm cache directory
+      id: npm-cache
+      run: |
+        echo "::set-output name=dir::$(npm config get cache)"
+    - uses: actions/cache@v1
       with:
-        path: node_modules
-        key: node-modules-${{ hashFiles('package-lock.json') }}
+        path: ${{ steps.npm-cache.outputs.dir }}
+        key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+        restore-keys: |
+         ${{ runner.os }}-node-
         
     - name: Install Dependencies
-      if: steps.cache-node-modules.outputs.cache-hit != 'true'
+      if: steps.npm-cache.outputs.cache-hit != 'true'
       run: npm install
       
     - run: npm run affected:build --with-deps --parallel -- --base=remotes/origin/main
