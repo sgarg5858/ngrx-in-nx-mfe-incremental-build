@@ -45,4 +45,9 @@ jobs:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
     - run: git fetch origin main
+    - name: Cache node modules
+      uses: actions/cache@v2
+      with:
+        path: node_modules
+        key: cache-node-modules-${{ hashFiles('package-lock') }}
     - run: npm run affected:build --with-deps --parallel -- --base=remotes/origin/main
